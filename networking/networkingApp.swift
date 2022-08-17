@@ -12,7 +12,8 @@ struct networkingApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
-            PostList()
+//            PostList()
+            RegisterView()
         }
     }
 }

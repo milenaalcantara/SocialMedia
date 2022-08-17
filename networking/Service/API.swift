@@ -8,43 +8,75 @@
 import Foundation
 
 class API {
+    
+    static private let BASE_URL = "http://adaspace.local"
+//    static private let BASE_URL = "http://127.0.0.1:8080"
+    
     // MARK: Users
-    func postUsers() async -> [UserSession] {
-        let url = URL(string: "http://adaspace.local/users")
+    static func createUser(newUser: User) async -> UserSession? {
+        let url = URL(string: "\(BASE_URL)/users")
         var urlRequest = URLRequest(url: url!)
+        
+        let enconder = JSONEncoder()
+        let newUserData = User(name: newUser.name, email: newUser.email, password: newUser.password)
+        let payload = try! enconder.encode(newUserData)
         
         // Configuração
         urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-type")
+        urlRequest.httpBody = payload
         
         // Execução
         do {
-            
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            let decodedNewUser: UserSession = try JSONDecoder().decode(UserSession.self, from: data)
+            print("Novo Usuário: \(decodedNewUser)")
+            return decodedNewUser
+        } catch {
+            print("Deu Ruim: \(error)")
         }
         
-        
-        return []
+        return nil
     }
     
-//    func getUsers() async -> [User] {
-//        let url = URL(string: "http://adaspace.local/users")
-//        var urlRequest = URLRequest(url: url!)
-//
-//        urlRequest.httpMethod = "GET"
-//
-//        do {
-//            let (data, _) = try await URLSession.shared.data(for: urlRequest)
-//            let userDecoded = try JSONDecoder().decode([User].self, from: data)
-//            return userDecoded
-//
-//        } catch {
-//            print("Error ao chamar user \(error)")
-//        }
-//        return []
-//    }
+    static func getUsers() async -> [User] {
+            let url = URL(string: "\(BASE_URL)/users")
+            var urlRequest = URLRequest(url: url!)
+            
+            urlRequest.httpMethod = "GET"
+            
+            do {
+                let (data, _) = try await URLSession.shared.data(for: urlRequest)
+                let decodedUsers: [User] = try JSONDecoder().decode([User].self, from: data)
+                
+                return decodedUsers
+            } catch {
+                print("Deu Ruim: \(error)")
+            }
+            
+            return []
+        }
+        
+    static func getUsersById(_ id: String) async -> User {
+        let url = URL(string: "\(BASE_URL)/\(id)")
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "GET"
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            let decodedUser: User = try JSONDecoder().decode(User.self, from: data)
+            print(decodedUser)
+            return decodedUser
+        } catch {
+            print(error)
+            fatalError("\(error)")
+        }
+    }
+    
     
     // MARK: Posts
-    func getPosts() async -> [Post] {
-        let url = URL(string: "http://adaspace.local/posts")
+    static func getPosts() async -> [Post] {
+        let url = URL(string: "\(BASE_URL)/posts")
         var urlRequest = URLRequest(url: url!)
 
         urlRequest.httpMethod = "GET"
@@ -68,28 +100,15 @@ class API {
             do {
                 let (data, _) = try await URLSession.shared.data(for: urlRequest)
                 let allPosts = try decoder.decode([Post].self, from: data)
-                print(decoder)
-                for i in allPosts {
-                    print(i)
-                }
+//                print(decoder)
+//                for i in allPosts {
+//                    print(i)
+//                }
                 return allPosts
             } catch {
-                fatalError("deu ruim rapaz: \(error)")
+                print("deu ruim rapaz: \(error)")
             }
         }
+        return []
     }
-
-//    static func getPost() async -> [Post] {
-//        let urlRequest = URLRequest(url: URL(string: "http://adaspace.local/posts")!)
-//        do {
-//            let (data, _) = try await URLSession.shared.data(for: urlRequest)
-//            let postsDecoder = try JSONDecoder().decode([Post].self, from: data)
-//            print(postsDecoder)
-//            return postsDecoder
-//        } catch {
-//            print(error)
-//        }
-//
-//        return []
-//    }
 }

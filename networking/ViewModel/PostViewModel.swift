@@ -16,7 +16,7 @@ class PostViewModel: ObservableObject {
     }
     
     func fetchPosts() async {
-        let allPosts = await API().getPosts()
+        let allPosts = await API.getPosts()
         await publishPosts(posts: allPosts)
     }
 }

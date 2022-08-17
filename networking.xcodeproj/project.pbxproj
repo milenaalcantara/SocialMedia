@@ -12,6 +12,18 @@
 		F33DE01C28A3F56E007C0B07 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE01B28A3F56E007C0B07 /* PostList.swift */; };
 		F33DE01E28A3FBE4007C0B07 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE01D28A3FBE4007C0B07 /* PostCell.swift */; };
 		F33DE02028A53C18007C0B07 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE01F28A53C18007C0B07 /* UserViewModel.swift */; };
+		F33DE02628ABDA54007C0B07 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02528ABDA54007C0B07 /* RegisterView.swift */; };
+		F33DE02728ABDA54007C0B07 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02528ABDA54007C0B07 /* RegisterView.swift */; };
+		F33DE02828ABDA54007C0B07 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02528ABDA54007C0B07 /* RegisterView.swift */; };
+		F33DE02C28ABE13E007C0B07 /* CustomerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02B28ABE13E007C0B07 /* CustomerTextField.swift */; };
+		F33DE02D28ABE13E007C0B07 /* CustomerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02B28ABE13E007C0B07 /* CustomerTextField.swift */; };
+		F33DE02E28ABE13E007C0B07 /* CustomerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02B28ABE13E007C0B07 /* CustomerTextField.swift */; };
+		F33DE03028ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02F28ABE2D6007C0B07 /* CustomerSecureField.swift */; };
+		F33DE03128ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02F28ABE2D6007C0B07 /* CustomerSecureField.swift */; };
+		F33DE03228ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02F28ABE2D6007C0B07 /* CustomerSecureField.swift */; };
+		F33DE03528ABE380007C0B07 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE03428ABE380007C0B07 /* SignInView.swift */; };
+		F33DE03628ABE380007C0B07 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE03428ABE380007C0B07 /* SignInView.swift */; };
+		F33DE03728ABE380007C0B07 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE03428ABE380007C0B07 /* SignInView.swift */; };
 		F394DBEB28A2997C00072780 /* networkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394DBEA28A2997C00072780 /* networkingApp.swift */; };
 		F394DBED28A2997C00072780 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394DBEC28A2997C00072780 /* ContentView.swift */; };
 		F394DBEF28A2997E00072780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F394DBEE28A2997E00072780 /* Assets.xcassets */; };
@@ -46,6 +58,11 @@
 		F33DE01B28A3F56E007C0B07 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
 		F33DE01D28A3FBE4007C0B07 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		F33DE01F28A53C18007C0B07 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		F33DE02528ABDA54007C0B07 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		F33DE02B28ABE13E007C0B07 /* CustomerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTextField.swift; sourceTree = "<group>"; };
+		F33DE02F28ABE2D6007C0B07 /* CustomerSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSecureField.swift; sourceTree = "<group>"; };
+		F33DE03428ABE380007C0B07 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		F33DE03828AD111B007C0B07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F394DBE728A2997C00072780 /* networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F394DBEA28A2997C00072780 /* networkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = networkingApp.swift; sourceTree = "<group>"; };
 		F394DBEC28A2997C00072780 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +110,25 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		F33DE02928ABE0E5007C0B07 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				F33DE03328ABE356007C0B07 /* Customers */,
+				F33DE02528ABDA54007C0B07 /* RegisterView.swift */,
+				F33DE03428ABE380007C0B07 /* SignInView.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		F33DE03328ABE356007C0B07 /* Customers */ = {
+			isa = PBXGroup;
+			children = (
+				F33DE02F28ABE2D6007C0B07 /* CustomerSecureField.swift */,
+				F33DE02B28ABE13E007C0B07 /* CustomerTextField.swift */,
+			);
+			path = Customers;
+			sourceTree = "<group>";
+		};
 		F394DBDE28A2997C00072780 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +152,7 @@
 		F394DBE928A2997C00072780 /* networking */ = {
 			isa = PBXGroup;
 			children = (
+				F33DE03828AD111B007C0B07 /* Info.plist */,
 				F33DE01228A3E909007C0B07 /* Service */,
 				F394DC1828A29ECB00072780 /* ViewModel */,
 				F394DC1728A29EC200072780 /* View */,
@@ -165,6 +202,7 @@
 		F394DC1728A29EC200072780 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F33DE02928ABE0E5007C0B07 /* SignIn */,
 				F33DE01B28A3F56E007C0B07 /* PostList.swift */,
 				F33DE01D28A3FBE4007C0B07 /* PostCell.swift */,
 			);
@@ -311,14 +349,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				F394DBED28A2997C00072780 /* ContentView.swift in Sources */,
+				F33DE02628ABDA54007C0B07 /* RegisterView.swift in Sources */,
 				F394DC1B28A29F8600072780 /* PostViewModel.swift in Sources */,
 				F394DC1528A29CBA00072780 /* User.swift in Sources */,
 				F33DE01628A3EB95007C0B07 /* Post.swift in Sources */,
+				F33DE02C28ABE13E007C0B07 /* CustomerTextField.swift in Sources */,
 				F394DBEB28A2997C00072780 /* networkingApp.swift in Sources */,
 				F33DE01428A3E928007C0B07 /* API.swift in Sources */,
 				F33DE01C28A3F56E007C0B07 /* PostList.swift in Sources */,
+				F33DE03028ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */,
 				F33DE02028A53C18007C0B07 /* UserViewModel.swift in Sources */,
 				F33DE01E28A3FBE4007C0B07 /* PostCell.swift in Sources */,
+				F33DE03528ABE380007C0B07 /* SignInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +368,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33DE02D28ABE13E007C0B07 /* CustomerTextField.swift in Sources */,
+				F33DE03128ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */,
 				F394DBFC28A2997E00072780 /* networkingTests.swift in Sources */,
+				F33DE02728ABDA54007C0B07 /* RegisterView.swift in Sources */,
+				F33DE03628ABE380007C0B07 /* SignInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,8 +380,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33DE03728ABE380007C0B07 /* SignInView.swift in Sources */,
+				F33DE02828ABDA54007C0B07 /* RegisterView.swift in Sources */,
+				F33DE02E28ABE13E007C0B07 /* CustomerTextField.swift in Sources */,
 				F394DC0828A2997E00072780 /* networkingUITestsLaunchTests.swift in Sources */,
 				F394DC0628A2997E00072780 /* networkingUITests.swift in Sources */,
+				F33DE03228ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +530,7 @@
 				DEVELOPMENT_TEAM = 2P65JA735T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = networking/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -509,6 +560,7 @@
 				DEVELOPMENT_TEAM = 2P65JA735T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = networking/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
