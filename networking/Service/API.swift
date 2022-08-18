@@ -10,8 +10,8 @@ import SwiftKeychainWrapper
 
 class API {
     
-    static private let BASE_URL = "http://adaspace.local"
-//    static private let BASE_URL = "http://127.0.0.1:8080"
+//    static private let BASE_URL = "http://adaspace.local"
+    static private let BASE_URL = "http://127.0.0.1:8080"
     
     // MARK: Users
     
@@ -135,7 +135,6 @@ class API {
             do {
                 let (data, _) = try await URLSession.shared.data(for: urlRequest)
                 let allPosts = try decoder.decode([Post].self, from: data)
-
                 return allPosts
             } catch {
                 print("deu ruim rapaz: \(error)")

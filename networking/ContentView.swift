@@ -8,38 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var authentication: Authentication
-    
-    var body: some View {
-        NavigationView {
-            PostList()
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Log out") {
-                            authentication.updateValidation(success: false)
-                        }
-                    }
-                }
-//            VStack {
-//                Text("Authorized..  You are in!!")
-//                    .font(.largeTitle)
-//                Image("Inside")
-//            }
-//                .padding()
-//                .navigationTitle("My Secure App")
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button("Log out") {
-//                        authentication.updateValidation(success: false)
-//                    }
-//                }
-//            }
-        }
-    }
-}
+    @EnvironmentObject var loginVM: LoginViewModel
+    @State var session : UserSession?
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    var body: some View {
+        if (loginVM.isLoggedIn) {
+            PostList(session: $session)
+        } else {
+            LoginView( login: $session)
+        }
+
     }
 }

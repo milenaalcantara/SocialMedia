@@ -8,13 +8,9 @@
 import SwiftUI
 
 struct RegisterView: View {
-    var userVM: UserViewModel = UserViewModel()
-    var loginVM: LoginViewModel = LoginViewModel()
+    @StateObject private var registerVM = RegisterViewModel()
     
-    @State var name = ""
-    @State var email = ""
-    @State var password = ""
-    @State var passwordAgain = ""
+    @Binding var login : UserSession?
     
     @Environment(\.presentationMode) var presentation
     
@@ -33,7 +29,6 @@ struct RegisterView: View {
                             .foregroundColor(.gray)
                             .padding()
                             .background(.white)
-//                            .clipShape(Circle())
                     })
                 }
                 .padding()
@@ -46,7 +41,7 @@ struct RegisterView: View {
                             .frame(width: 25)
                             .foregroundColor(.gray)
                                         
-                        CustomerTextField(placeholder: Text("Nome").foregroundColor(.gray), text: $name)
+                        CustomerTextField(placeholder: Text("Nome").foregroundColor(.gray), text: $registerVM.name)
                     }
                     .frame(height: 30)
                     .padding()
@@ -63,7 +58,7 @@ struct RegisterView: View {
                             .frame(width: 25)
                             .foregroundColor(.gray)
                                         
-                        CustomerTextField(placeholder: Text("E-mail").foregroundColor(.gray), text: $email)
+                        CustomerTextField(placeholder: Text("E-mail").foregroundColor(.gray), text: $registerVM.email)
                     }
                     .frame(height: 30)
                     .padding()
@@ -80,7 +75,7 @@ struct RegisterView: View {
                             .frame(width: 25, height: 25)
                             .foregroundColor(.gray)
                                         
-                        CustomerSecureField(placeholder: Text("Senha").foregroundColor(.gray), text: $password)
+                        CustomerSecureField(placeholder: Text("Senha").foregroundColor(.gray), text: $registerVM.password)
                     }
                     .frame(height: 30)
                     .padding()
@@ -91,24 +86,11 @@ struct RegisterView: View {
                     .padding(.horizontal)
                         
                     Button (action: {
-                        let newUser = NewUser(name: name, email: email, password: password)
                         Task {
-                            let createdUser =  await userVM.createNewUser(newUser: newUser)
+                            login = await registerVM.createNewUser() // revisar pq não está fazendo login
                             
-                            let session = await loginVM.initSession(
-                                isNewUser: true,
-                                email: (createdUser?.user.email)!,
-                                password: password
-                            )
-                            
+                            print("Eu sou login: \(String(describing: login))")
                             presentation.wrappedValue.dismiss()
-                            
-                            if (!(session?.token.isEmpty)!) {
-                                print("entrou aqui")
-                                PostList()
-                            } else {
-                                print("Não entrou, acho que nao cadastrou nada...")
-                            }
                         }
                     }, label: {
                         Text("Registrar-se")
@@ -124,11 +106,5 @@ struct RegisterView: View {
                 }
             }
         }
-    }
-}
-
-struct RegisterView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterView()
     }
 }

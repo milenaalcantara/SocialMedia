@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject private var loginVM = LoginViewModel()
-    
-    @State var presentSignUp = false
+    @EnvironmentObject var loginVM : LoginViewModel
+    @Binding var login : UserSession?
+    @State var isPresented : Bool = false
     
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
-            
             VStack(spacing: 15) {
+                Spacer()
+                
                 HStack(spacing: 15) {
                     Image(systemName: "envelope")
                         .resizable()
@@ -54,15 +54,8 @@ struct LoginView: View {
                 
                 Button(action: {
                     Task {
-                        let session = await loginVM.initSession(isNewUser: false)
-                        
-                        if ((session?.token.isEmpty)!) {
-                            print("token vazio")
-                        } else {
-                            PostList()
-                        }
+                        login = await loginVM.initSession()
                     }
-                    
                 }, label: {
                     Text("Entrar")
                         .font(.title)
@@ -73,18 +66,12 @@ struct LoginView: View {
                         .cornerRadius(8)
                         .padding(.horizontal)
                 })
-//                .disabled(loginVM.loginDisabled)
-//                .padding(.bottom,20)
                 .padding(.top, 30)
                 
-//                Image("LaunchScreen")
-//                    .onTapGesture {
-//                        UIApplication.shared.endEditing()
-//                    }
                 Spacer()
                 
                 Button(action: {
-                    presentSignUp.toggle()
+                    isPresented.toggle()
                 }, label: {
                     Text("Ainda não possui uma conta? \nRegistre-se agora.")
                         .underline()
@@ -97,14 +84,11 @@ struct LoginView: View {
             }
         }
         .padding()
-        .sheet(isPresented: $presentSignUp, content: {
-            RegisterView()
+        .sheet(isPresented: $isPresented, content: {
+            RegisterView(login: $login)
         })
-    }
-}
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
+        .task {
+            print("estou entrando aqui no login...")
+        }
     }
 }
