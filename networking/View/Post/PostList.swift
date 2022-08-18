@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PostList: View {
     @ObservedObject var viewModel: PostViewModel = PostViewModel()
+    @Binding var session : UserSession?
     
     var body: some View {
         ZStack {
@@ -25,7 +26,6 @@ struct PostList: View {
     
     var emptyState: some View {
         VStack {
-//            Image("")
             Text("Loading...")
                 .font(.title)
             ProgressView()
@@ -42,11 +42,5 @@ struct PostList: View {
                     .padding(20)
             }
         }
-    }
-}
-
-struct PostList_Previews: PreviewProvider {
-    static var previews: some View {
-        PostList()
     }
 }

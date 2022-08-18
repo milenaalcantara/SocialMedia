@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
-}
+    @EnvironmentObject var loginVM: LoginViewModel
+    @State var session : UserSession?
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    var body: some View {
+        if (loginVM.isLoggedIn) {
+            PostList(session: $session)
+        } else {
+            LoginView( login: $session)
+        }
+
     }
 }
