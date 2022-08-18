@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct RegisterView: View {
-    var viewModel: UserViewModel = UserViewModel()
-    
-    var newUser: User = User(name: "", email: "", password: "")
+    var userVM: UserViewModel = UserViewModel()
+    var loginVM: LoginViewModel = LoginViewModel()
     
     @State var name = ""
     @State var email = ""
@@ -26,7 +25,7 @@ struct RegisterView: View {
             VStack {
                 HStack {
                     Spacer()
-                                   
+
                     Button(action: {
                         presentation.wrappedValue.dismiss()
                     }, label: {
@@ -90,29 +89,26 @@ struct RegisterView: View {
                             .strokeBorder(.purple, lineWidth: 1)
                     )
                     .padding(.horizontal)
-                                    
-                    HStack(spacing: 15) {
-                        Image(systemName: "key")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(.gray)
-                        
-                        CustomerSecureField(placeholder: Text("Confirme a senha").foregroundColor(.gray), text: $passwordAgain)
-                    }
-                    .frame(height: 30)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .strokeBorder(.purple, lineWidth: 1)
-                    )
-                    .padding(.horizontal)
                         
                     Button (action: {
-                        let newUser = User(name: name, email: email, password: password)
+                        let newUser = NewUser(name: name, email: email, password: password)
                         Task {
-                            await viewModel.createNewUser(newUser: newUser)
-
+                            let createdUser =  await userVM.createNewUser(newUser: newUser)
+                            
+                            let session = await loginVM.initSession(
+                                isNewUser: true,
+                                email: (createdUser?.user.email)!,
+                                password: password
+                            )
+                            
+                            presentation.wrappedValue.dismiss()
+                            
+                            if (!(session?.token.isEmpty)!) {
+                                print("entrou aqui")
+                                PostList()
+                            } else {
+                                print("Não entrou, acho que nao cadastrou nada...")
+                            }
                         }
                     }, label: {
                         Text("Registrar-se")

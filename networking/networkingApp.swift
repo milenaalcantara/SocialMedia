@@ -9,11 +9,16 @@ import SwiftUI
 
 @main
 struct networkingApp: App {
+    @StateObject var authentication = Authentication()
+    
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-//            PostList()
-            RegisterView()
+            PostList()
         }
+//            if authentication.isValidated {
+//                ContentView().environmentObject(authentication)
+//            } else {
+//                LoginView().environmentObject(authentication)
+//            }        }
     }
 }

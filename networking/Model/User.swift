@@ -8,6 +8,11 @@
 import Foundation
 
 struct User: Codable {
+    var email: String = ""
+    var password: String = ""
+}
+
+struct NewUser: Codable {
     let name: String
     let email: String
     let password: String
@@ -23,3 +28,11 @@ struct UserSession: Codable {
     let token: String
     let user: UserOfSession
 }
+
+//
+//struct LoginResponse: Codable {
+//    let token: String?
+//    let message: String?
+//    let success: Bool?
+//}
+

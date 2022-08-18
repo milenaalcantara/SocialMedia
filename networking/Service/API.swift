@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 class API {
     
@@ -13,12 +14,13 @@ class API {
 //    static private let BASE_URL = "http://127.0.0.1:8080"
     
     // MARK: Users
-    static func createUser(newUser: User) async -> UserSession? {
+    
+    static func createUser(newUser: NewUser) async -> UserSession? {
         let url = URL(string: "\(BASE_URL)/users")
         var urlRequest = URLRequest(url: url!)
         
         let enconder = JSONEncoder()
-        let newUserData = User(name: newUser.name, email: newUser.email, password: newUser.password)
+        let newUserData = NewUser(name: newUser.name, email: newUser.email, password: newUser.password)
         let payload = try! enconder.encode(newUserData)
         
         // Configuração
@@ -33,10 +35,8 @@ class API {
             print("Novo Usuário: \(decodedNewUser)")
             return decodedNewUser
         } catch {
-            print("Deu Ruim: \(error)")
+            fatalError("Deu Ruim: \(error)")
         }
-        
-        return nil
     }
     
     static func getUsers() async -> [User] {
@@ -73,8 +73,43 @@ class API {
         }
     }
     
+    // MARK: Authentication - Completion Handler
+    
+    
+    
+    static func loginSession(email: String, password: String) async -> UserSession? {
+        let saveAccessToken: Bool
+        
+        let url = URL(string: "\(BASE_URL)/users/login")
+        var urlRequest = URLRequest(url: url!)
+        let authData = (email + ":" + password).data(using: .utf8)!.base64EncodedString()
+
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("Basic \(authData)", forHTTPHeaderField: "Authorization")
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            let decodedLoginResponse: UserSession = try JSONDecoder().decode(UserSession.self, from: data)
+            
+            if (decodedLoginResponse.token.isEmpty) {
+                print("Não possui token")
+                return nil
+            } else {
+                saveAccessToken = KeychainWrapper.standard.set(decodedLoginResponse.token, forKey: "accessToken")
+            }
+            
+            print(decodedLoginResponse)
+            return decodedLoginResponse
+        } catch {
+            print("Nao deu certo \(error)")
+        }
+        return nil
+    }
+    
     
     // MARK: Posts
+    
     static func getPosts() async -> [Post] {
         let url = URL(string: "\(BASE_URL)/posts")
         var urlRequest = URLRequest(url: url!)
@@ -100,10 +135,7 @@ class API {
             do {
                 let (data, _) = try await URLSession.shared.data(for: urlRequest)
                 let allPosts = try decoder.decode([Post].self, from: data)
-//                print(decoder)
-//                for i in allPosts {
-//                    print(i)
-//                }
+
                 return allPosts
             } catch {
                 print("deu ruim rapaz: \(error)")

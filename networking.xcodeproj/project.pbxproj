@@ -21,9 +21,13 @@
 		F33DE03028ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02F28ABE2D6007C0B07 /* CustomerSecureField.swift */; };
 		F33DE03128ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02F28ABE2D6007C0B07 /* CustomerSecureField.swift */; };
 		F33DE03228ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE02F28ABE2D6007C0B07 /* CustomerSecureField.swift */; };
-		F33DE03528ABE380007C0B07 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE03428ABE380007C0B07 /* SignInView.swift */; };
-		F33DE03628ABE380007C0B07 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE03428ABE380007C0B07 /* SignInView.swift */; };
-		F33DE03728ABE380007C0B07 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE03428ABE380007C0B07 /* SignInView.swift */; };
+		F33DE03528ABE380007C0B07 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE03428ABE380007C0B07 /* LoginView.swift */; };
+		F33DE03628ABE380007C0B07 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE03428ABE380007C0B07 /* LoginView.swift */; };
+		F33DE03728ABE380007C0B07 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE03428ABE380007C0B07 /* LoginView.swift */; };
+		F33DE05B28ADCB3D007C0B07 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE05A28ADCB3D007C0B07 /* Authentication.swift */; };
+		F33DE05D28ADCDC2007C0B07 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE05C28ADCDC2007C0B07 /* LoginViewModel.swift */; };
+		F33DE05F28ADD132007C0B07 /* UIApplication+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE05E28ADD132007C0B07 /* UIApplication+extension.swift */; };
+		F33DE06228AE6810007C0B07 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = F33DE06128AE6810007C0B07 /* SwiftKeychainWrapper */; };
 		F394DBEB28A2997C00072780 /* networkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394DBEA28A2997C00072780 /* networkingApp.swift */; };
 		F394DBED28A2997C00072780 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394DBEC28A2997C00072780 /* ContentView.swift */; };
 		F394DBEF28A2997E00072780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F394DBEE28A2997E00072780 /* Assets.xcassets */; };
@@ -61,8 +65,11 @@
 		F33DE02528ABDA54007C0B07 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		F33DE02B28ABE13E007C0B07 /* CustomerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTextField.swift; sourceTree = "<group>"; };
 		F33DE02F28ABE2D6007C0B07 /* CustomerSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSecureField.swift; sourceTree = "<group>"; };
-		F33DE03428ABE380007C0B07 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		F33DE03428ABE380007C0B07 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F33DE03828AD111B007C0B07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F33DE05A28ADCB3D007C0B07 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		F33DE05C28ADCDC2007C0B07 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F33DE05E28ADD132007C0B07 /* UIApplication+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+extension.swift"; sourceTree = "<group>"; };
 		F394DBE728A2997C00072780 /* networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F394DBEA28A2997C00072780 /* networkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = networkingApp.swift; sourceTree = "<group>"; };
 		F394DBEC28A2997C00072780 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33DE06228AE6810007C0B07 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				F33DE01328A3E928007C0B07 /* API.swift */,
+				F33DE05A28ADCB3D007C0B07 /* Authentication.swift */,
+				F33DE05E28ADD132007C0B07 /* UIApplication+extension.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -115,7 +125,7 @@
 			children = (
 				F33DE03328ABE356007C0B07 /* Customers */,
 				F33DE02528ABDA54007C0B07 /* RegisterView.swift */,
-				F33DE03428ABE380007C0B07 /* SignInView.swift */,
+				F33DE03428ABE380007C0B07 /* LoginView.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -214,6 +224,7 @@
 			children = (
 				F394DC1A28A29F8600072780 /* PostViewModel.swift */,
 				F33DE01F28A53C18007C0B07 /* UserViewModel.swift */,
+				F33DE05C28ADCDC2007C0B07 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -234,6 +245,9 @@
 			dependencies = (
 			);
 			name = networking;
+			packageProductDependencies = (
+				F33DE06128AE6810007C0B07 /* SwiftKeychainWrapper */,
+			);
 			productName = networking;
 			productReference = F394DBE728A2997C00072780 /* networking.app */;
 			productType = "com.apple.product-type.application";
@@ -306,6 +320,9 @@
 				Base,
 			);
 			mainGroup = F394DBDE28A2997C00072780;
+			packageReferences = (
+				F33DE06028AE6810007C0B07 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+			);
 			productRefGroup = F394DBE828A2997C00072780 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -350,17 +367,20 @@
 			files = (
 				F394DBED28A2997C00072780 /* ContentView.swift in Sources */,
 				F33DE02628ABDA54007C0B07 /* RegisterView.swift in Sources */,
+				F33DE05F28ADD132007C0B07 /* UIApplication+extension.swift in Sources */,
 				F394DC1B28A29F8600072780 /* PostViewModel.swift in Sources */,
 				F394DC1528A29CBA00072780 /* User.swift in Sources */,
 				F33DE01628A3EB95007C0B07 /* Post.swift in Sources */,
 				F33DE02C28ABE13E007C0B07 /* CustomerTextField.swift in Sources */,
 				F394DBEB28A2997C00072780 /* networkingApp.swift in Sources */,
+				F33DE05B28ADCB3D007C0B07 /* Authentication.swift in Sources */,
+				F33DE05D28ADCDC2007C0B07 /* LoginViewModel.swift in Sources */,
 				F33DE01428A3E928007C0B07 /* API.swift in Sources */,
 				F33DE01C28A3F56E007C0B07 /* PostList.swift in Sources */,
 				F33DE03028ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */,
 				F33DE02028A53C18007C0B07 /* UserViewModel.swift in Sources */,
 				F33DE01E28A3FBE4007C0B07 /* PostCell.swift in Sources */,
-				F33DE03528ABE380007C0B07 /* SignInView.swift in Sources */,
+				F33DE03528ABE380007C0B07 /* LoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +392,7 @@
 				F33DE03128ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */,
 				F394DBFC28A2997E00072780 /* networkingTests.swift in Sources */,
 				F33DE02728ABDA54007C0B07 /* RegisterView.swift in Sources */,
-				F33DE03628ABE380007C0B07 /* SignInView.swift in Sources */,
+				F33DE03628ABE380007C0B07 /* LoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F33DE03728ABE380007C0B07 /* SignInView.swift in Sources */,
+				F33DE03728ABE380007C0B07 /* LoginView.swift in Sources */,
 				F33DE02828ABDA54007C0B07 /* RegisterView.swift in Sources */,
 				F33DE02E28ABE13E007C0B07 /* CustomerTextField.swift in Sources */,
 				F394DC0828A2997E00072780 /* networkingUITestsLaunchTests.swift in Sources */,
@@ -695,6 +715,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F33DE06028AE6810007C0B07 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F33DE06128AE6810007C0B07 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F33DE06028AE6810007C0B07 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F394DBDF28A2997C00072780 /* Project object */;
 }
