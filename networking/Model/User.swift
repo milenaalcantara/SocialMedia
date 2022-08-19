@@ -8,23 +8,31 @@
 import Foundation
 
 struct User: Codable {
+    var email: String = ""
+    var password: String = ""
+}
+
+struct NewUser: Codable {
     let name: String
     let email: String
     let password: String
-    
-    enum CodingKeys: String, CodingKey {
-        case name, email, password
-    }
 }
 
-struct UserFromSession: Codable {
+struct UserOfSession: Codable {
     let id: String
     let name: String
     let email: String
-    let avatar: String
 }
 
 struct UserSession: Codable {
     let token: String
-    let user: UserFromSession
+    let user: UserOfSession
 }
+
+//
+//struct LoginResponse: Codable {
+//    let token: String?
+//    let message: String?
+//    let success: Bool?
+//}
+

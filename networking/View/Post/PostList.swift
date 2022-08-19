@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PostList: View {
     @ObservedObject var viewModel: PostViewModel = PostViewModel()
+    @Binding var session : UserSession?
     
     var body: some View {
         ZStack {
@@ -25,7 +26,6 @@ struct PostList: View {
     
     var emptyState: some View {
         VStack {
-//            Image("")
             Text("Loading...")
                 .font(.title)
             ProgressView()
@@ -38,15 +38,23 @@ struct PostList: View {
     var postList: some View {
         ScrollView(.vertical, showsIndicators: false) {
             ForEach(viewModel.posts, id: \.id) { post in
-                PostCell(post: post)
+                PostCell(
+                    post: post
+                )
                     .padding(20)
             }
         }
     }
 }
 
-struct PostList_Previews: PreviewProvider {
-    static var previews: some View {
-        PostList()
-    }
-}
+//CatBreedCell(
+//    catBreed: cat,
+//    beginsFavourited: viewModel.favorites.contains { cat.id == $0.id },
+//    addFavoriteHandler: {
+//        await viewModel.addFavorite(cat: $0)
+//    },
+//    removeFavoriteHandler: {
+//        await viewModel.removeFavorite(cat: $0)
+//    }
+//)
+//.padding(20)

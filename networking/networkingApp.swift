@@ -9,10 +9,14 @@ import SwiftUI
 
 @main
 struct networkingApp: App {
+    @StateObject var loginVM = LoginViewModel()
+    
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-            PostList()
+            NavigationView {
+                ContentView()
+            }
+            .environmentObject(loginVM)
         }
     }
 }

@@ -7,3 +7,8 @@
 
 import Foundation
 
+class UserViewModel {
+    func createNewUser(newUser: NewUser) async -> UserSession? {
+        return await API.createUser(newUser: newUser)
+    }
+}

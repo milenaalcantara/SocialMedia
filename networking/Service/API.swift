@@ -6,45 +6,112 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 class API {
+    
+    static private let BASE_URL = "http://adaspace.local"
+//    static private let BASE_URL = "http://127.0.0.1:8080"
+    
     // MARK: Users
-    func postUsers() async -> [UserSession] {
-        let url = URL(string: "http://adaspace.local/users")
+    
+    static func createUser(newUser: NewUser) async -> UserSession? {
+        let url = URL(string: "\(BASE_URL)/users")
         var urlRequest = URLRequest(url: url!)
+        
+        let enconder = JSONEncoder()
+        let newUserData = NewUser(name: newUser.name, email: newUser.email, password: newUser.password)
+        let payload = try! enconder.encode(newUserData)
         
         // Configuração
         urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-type")
+        urlRequest.httpBody = payload
         
         // Execução
         do {
-            
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            let decodedNewUser: UserSession = try JSONDecoder().decode(UserSession.self, from: data)
+            print("Novo Usuário: \(decodedNewUser)")
+            return decodedNewUser
+        } catch {
+            fatalError("Deu Ruim: \(error)")
         }
-        
-        
-        return []
     }
     
-//    func getUsers() async -> [User] {
-//        let url = URL(string: "http://adaspace.local/users")
+//    static func getUsers() async -> [User] {
+//            let url = URL(string: "\(BASE_URL)/users")
+//            var urlRequest = URLRequest(url: url!)
+//            
+//            urlRequest.httpMethod = "GET"
+//            
+//            do {
+//                let (data, _) = try await URLSession.shared.data(for: urlRequest)
+//                let decodedUsers: [User] = try JSONDecoder().decode([User].self, from: data)
+//                
+//                return decodedUsers
+//            } catch {
+//                print("Deu Ruim: \(error)")
+//            }
+//            
+//            return []
+//        }
+        
+//    static func getUsersById(_ id: String) async -> User {
+//        let url = URL(string: "\(BASE_URL)/\(id)")
 //        var urlRequest = URLRequest(url: url!)
-//
 //        urlRequest.httpMethod = "GET"
-//
+//        
 //        do {
 //            let (data, _) = try await URLSession.shared.data(for: urlRequest)
-//            let userDecoded = try JSONDecoder().decode([User].self, from: data)
-//            return userDecoded
-//
+//            let decodedUser: User = try JSONDecoder().decode(User.self, from: data)
+//            print(decodedUser)
+//            return decodedUser
 //        } catch {
-//            print("Error ao chamar user \(error)")
+//            print(error)
+//            fatalError("\(error)")
 //        }
-//        return []
 //    }
     
+    // MARK: Authentication - Completion Handler
+    
+    
+    
+    static func loginSession(email: String, password: String) async -> UserSession? {
+        let saveAccessToken: Bool
+        
+        let url = URL(string: "\(BASE_URL)/users/login")
+        var urlRequest = URLRequest(url: url!)
+        let authData = (email + ":" + password).data(using: .utf8)!.base64EncodedString()
+
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("Basic \(authData)", forHTTPHeaderField: "Authorization")
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            let decodedLoginResponse: UserSession = try JSONDecoder().decode(UserSession.self, from: data)
+            
+            if (decodedLoginResponse.token.isEmpty) {
+                print("Não possui token")
+                return nil
+            } else {
+                saveAccessToken = KeychainWrapper.standard.set(decodedLoginResponse.token, forKey: "accessToken")
+            }
+            
+            print(decodedLoginResponse)
+            return decodedLoginResponse
+        } catch {
+            print("Nao deu certo \(error)")
+        }
+        return nil
+    }
+    
+    
     // MARK: Posts
-    func getPosts() async -> [Post] {
-        let url = URL(string: "http://adaspace.local/posts")
+    
+    static func getPosts() async -> [Post] {
+        let url = URL(string: "\(BASE_URL)/posts")
         var urlRequest = URLRequest(url: url!)
 
         urlRequest.httpMethod = "GET"
@@ -68,28 +135,11 @@ class API {
             do {
                 let (data, _) = try await URLSession.shared.data(for: urlRequest)
                 let allPosts = try decoder.decode([Post].self, from: data)
-                print(decoder)
-                for i in allPosts {
-                    print(i)
-                }
                 return allPosts
             } catch {
-                fatalError("deu ruim rapaz: \(error)")
+                print("deu ruim rapaz: \(error)")
             }
         }
+        return []
     }
-
-//    static func getPost() async -> [Post] {
-//        let urlRequest = URLRequest(url: URL(string: "http://adaspace.local/posts")!)
-//        do {
-//            let (data, _) = try await URLSession.shared.data(for: urlRequest)
-//            let postsDecoder = try JSONDecoder().decode([Post].self, from: data)
-//            print(postsDecoder)
-//            return postsDecoder
-//        } catch {
-//            print(error)
-//        }
-//
-//        return []
-//    }
 }
