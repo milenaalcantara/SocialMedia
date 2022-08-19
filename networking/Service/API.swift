@@ -10,8 +10,8 @@ import SwiftKeychainWrapper
 
 class API {
     
-//    static private let BASE_URL = "http://adaspace.local"
-    static private let BASE_URL = "http://127.0.0.1:8080"
+    static private let BASE_URL = "http://adaspace.local"
+//    static private let BASE_URL = "http://127.0.0.1:8080"
     
     // MARK: Users
     
@@ -39,39 +39,39 @@ class API {
         }
     }
     
-    static func getUsers() async -> [User] {
-            let url = URL(string: "\(BASE_URL)/users")
-            var urlRequest = URLRequest(url: url!)
-            
-            urlRequest.httpMethod = "GET"
-            
-            do {
-                let (data, _) = try await URLSession.shared.data(for: urlRequest)
-                let decodedUsers: [User] = try JSONDecoder().decode([User].self, from: data)
-                
-                return decodedUsers
-            } catch {
-                print("Deu Ruim: \(error)")
-            }
-            
-            return []
-        }
+//    static func getUsers() async -> [User] {
+//            let url = URL(string: "\(BASE_URL)/users")
+//            var urlRequest = URLRequest(url: url!)
+//            
+//            urlRequest.httpMethod = "GET"
+//            
+//            do {
+//                let (data, _) = try await URLSession.shared.data(for: urlRequest)
+//                let decodedUsers: [User] = try JSONDecoder().decode([User].self, from: data)
+//                
+//                return decodedUsers
+//            } catch {
+//                print("Deu Ruim: \(error)")
+//            }
+//            
+//            return []
+//        }
         
-    static func getUsersById(_ id: String) async -> User {
-        let url = URL(string: "\(BASE_URL)/\(id)")
-        var urlRequest = URLRequest(url: url!)
-        urlRequest.httpMethod = "GET"
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(for: urlRequest)
-            let decodedUser: User = try JSONDecoder().decode(User.self, from: data)
-            print(decodedUser)
-            return decodedUser
-        } catch {
-            print(error)
-            fatalError("\(error)")
-        }
-    }
+//    static func getUsersById(_ id: String) async -> User {
+//        let url = URL(string: "\(BASE_URL)/\(id)")
+//        var urlRequest = URLRequest(url: url!)
+//        urlRequest.httpMethod = "GET"
+//        
+//        do {
+//            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+//            let decodedUser: User = try JSONDecoder().decode(User.self, from: data)
+//            print(decodedUser)
+//            return decodedUser
+//        } catch {
+//            print(error)
+//            fatalError("\(error)")
+//        }
+//    }
     
     // MARK: Authentication - Completion Handler
     

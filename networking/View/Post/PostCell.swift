@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PostCell: View {
+    @State var favorite: Bool = false
+    @ObservedObject var postVM: PostViewModel = PostViewModel()
+    
     let post: Post
     
     init(post: Post) {
@@ -21,21 +24,52 @@ struct PostCell: View {
                 Text("\(post.content)")
                     .foregroundColor(.black)
             }
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .strokeBorder(.purple, lineWidth: 2)
-                    .frame(width: 350, height: 160, alignment: .center)
-                    .background(.white)
-            )
+            .padding(50)
             
-            
-            VStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .strokeBorder(.purple, lineWidth: 2)
-                    .frame(width: 350, height: 40, alignment: .center)
-                    .background(.purple)
+            HStack {
+                VStack(alignment: .leading) {
+                    Button(
+                        action: {
+                            Task {
+                                withAnimation { favorite.toggle() }
+//                                if favorite {
+//                                    postVM.addFavorite(favourite: post)
+//                                } else {
+//                                    postVM.removeFavourite(favourite: post)
+//                                }
+                            }
+                        },
+                        label: {
+                            HStack(spacing: 4) {
+                                ZStack {
+                                    Image(systemName: "heart.fill")
+                                        .font(.system(size: 30))
+                                    Image(systemName: "heart.fill")
+                                        .font(.system(size: 30))
+                                        .opacity(favorite ? 1: 0)
+                                        .scaleEffect(favorite ? 1 : 0.1)
+                                }
+                                .frame(width: 30)
+                            }
+                            .foregroundColor(favorite ? .pink : .white)
+                            .frame(height: 30)
+                        }
+                    )
+                    .buttonStyle(.plain)
+                }
+                
+                Spacer()
             }
+            .padding(16)
+            .background(Color.purple.opacity(0.8))
         }
+        .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.purple, lineWidth: 2)
+        )
+        .frame(width: UIScreen.main.bounds.width - 50, height: UIScreen.main.bounds.width - 150)
+//        .padding([.top, .horizontal])
     }
 }
 

@@ -27,6 +27,7 @@
 		F33DE05D28ADCDC2007C0B07 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE05C28ADCDC2007C0B07 /* LoginViewModel.swift */; };
 		F33DE06228AE6810007C0B07 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = F33DE06128AE6810007C0B07 /* SwiftKeychainWrapper */; };
 		F33DE06528AEBEE5007C0B07 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE06428AEBEE5007C0B07 /* RegisterViewModel.swift */; };
+		F33DE06928AF1D0C007C0B07 /* FavouritePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33DE06828AF1D0C007C0B07 /* FavouritePost.swift */; };
 		F394DBEB28A2997C00072780 /* networkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394DBEA28A2997C00072780 /* networkingApp.swift */; };
 		F394DBED28A2997C00072780 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394DBEC28A2997C00072780 /* ContentView.swift */; };
 		F394DBEF28A2997E00072780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F394DBEE28A2997E00072780 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		F33DE03828AD111B007C0B07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F33DE05C28ADCDC2007C0B07 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F33DE06428AEBEE5007C0B07 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		F33DE06828AF1D0C007C0B07 /* FavouritePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePost.swift; sourceTree = "<group>"; };
 		F394DBE728A2997C00072780 /* networking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = networking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F394DBEA28A2997C00072780 /* networkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = networkingApp.swift; sourceTree = "<group>"; };
 		F394DBEC28A2997C00072780 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		F394DC1628A29EB500072780 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F33DE06828AF1D0C007C0B07 /* FavouritePost.swift */,
 				F394DC1428A29CBA00072780 /* User.swift */,
 				F33DE01528A3EB95007C0B07 /* Post.swift */,
 			);
@@ -379,6 +382,7 @@
 				F394DBEB28A2997C00072780 /* networkingApp.swift in Sources */,
 				F33DE06528AEBEE5007C0B07 /* RegisterViewModel.swift in Sources */,
 				F33DE05D28ADCDC2007C0B07 /* LoginViewModel.swift in Sources */,
+				F33DE06928AF1D0C007C0B07 /* FavouritePost.swift in Sources */,
 				F33DE01428A3E928007C0B07 /* API.swift in Sources */,
 				F33DE01C28A3F56E007C0B07 /* PostList.swift in Sources */,
 				F33DE03028ABE2D7007C0B07 /* CustomerSecureField.swift in Sources */,

@@ -38,9 +38,23 @@ struct PostList: View {
     var postList: some View {
         ScrollView(.vertical, showsIndicators: false) {
             ForEach(viewModel.posts, id: \.id) { post in
-                PostCell(post: post)
+                PostCell(
+                    post: post
+                )
                     .padding(20)
             }
         }
     }
 }
+
+//CatBreedCell(
+//    catBreed: cat,
+//    beginsFavourited: viewModel.favorites.contains { cat.id == $0.id },
+//    addFavoriteHandler: {
+//        await viewModel.addFavorite(cat: $0)
+//    },
+//    removeFavoriteHandler: {
+//        await viewModel.removeFavorite(cat: $0)
+//    }
+//)
+//.padding(20)
